@@ -31,6 +31,13 @@ Controller manager是集群内部的管理控制中心，负责集群内部资�
         * （3）namespace级别，为namespace（多租户）资源限制：pod数量；RC数量；service数量；secret数量；可持有的PVC
 
 * 4. NamespaceController: 用户可以通过API server创建新的Namespace并保存到etcd中，Namespace controller 定时通过API server读取这些Namespaces信息。
-* 5. service Controller与Endpoint COntroller：EndPoints表示了一个service对应的所有Pod的访问地址，而Endpoints controller 就是负责生成和维护所有Endpoints对象的Controller。每个node上的kube-proxy进行获取每个service的#Endpoint，实现了service的负载均衡功能。service Controller是内部集群与外部平台之间的接口控制器。service Controller监听service的变化，如果是一个LB类型的service，Controller确保外部云平台上该service对应的LB实例被相应的创建，删除以及更新路由转发表。
+* 5. service Controller与Endpoint COntroller：EndPoints表示了一个service对应的所有Pod的访问地址，而Endpoints controller 就是负责生成和维护所有Endpoints对象的Controller。每个node上的kube-proxy进行获取每个service的#Endpoint，实现了service的负载均衡功能。service Controller是内部集群与外部平台之间的接口控制器。service Controller监听service的变化，如果是一个LB类型的service，Controller确保外部云平台上该service对应的LB实例被相应的创建，删除以及更新路由转发表.
 ### scheduler原理分析
 kubernetes schelduler 在整个系统中承上启下：承上是指负责接收Controllermanager创建的新pod安排node；启下是指安置工作完成后目标node上的kubelet服务进程接管后继工作，负责pod生命周期的下半阶段。
+
+
+### kubelet 原理分析
+
+
+
+
